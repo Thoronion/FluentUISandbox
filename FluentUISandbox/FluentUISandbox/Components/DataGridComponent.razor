@@ -1,0 +1,21 @@
+﻿@using System.Collections.ObjectModel
+
+<FluentDataGrid 
+	TGridItem="GridRecord" 
+	Items="@_records" 
+	Loading="@(_records is null)">
+	<PropertyColumn  Property="@(r => r.a)"/>
+	<PropertyColumn Property="@(r => r.b)" />
+</FluentDataGrid>
+
+@code {
+	private IQueryable<GridRecord>? _records = null;
+
+	[Parameter]
+	public Collection<GridRecord>? Items { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		_records = Items?.AsQueryable();
+	}
+}

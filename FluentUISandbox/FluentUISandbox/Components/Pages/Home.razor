@@ -1,0 +1,22 @@
+﻿@page "/"
+@using System.Collections.ObjectModel
+
+@rendermode @(new InteractiveServerRenderMode(false))
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<FluentButton OnClick="OnClick">Click Me!</FluentButton>
+
+<DataGridComponent Items="@_items"/>
+
+@code
+{
+	private Collection<GridRecord>? _items;
+
+	private void OnClick()
+	{
+		_items = new();
+	}
+}
